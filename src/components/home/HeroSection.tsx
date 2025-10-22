@@ -2,126 +2,233 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, CheckCircle, Search, MessageCircle } from 'lucide-react'
+import { ArrowRight, Star, Plus } from 'lucide-react'
 import { useState } from 'react'
 
-const HeroSection = () => {
-  const [imageError, setImageError] = useState(false)
-  
-  const searchSuggestions = [
-    'Could be:', 'Maize', 'Fall Armyworm', 'Tuta', 'Blossom End Rot', 'Thrips', 'Profile',
-    'Taurus', 'Chariot',
+// Wavy Border SVG Components
+const LeftWavyBorder = () => (
+  <svg
+    className="absolute left-0 top-0 h-full w-16 lg:w-24 z-10"
+    viewBox="0 0 100 800"
+    preserveAspectRatio="none"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0 0 Q20 40 15 80 Q25 120 10 160 Q30 200 20 240 Q35 280 15 320 Q25 360 20 400 Q30 440 15 480 Q35 520 25 560 Q20 600 30 640 Q15 680 25 720 Q35 760 20 800 L0 800 Z"
+      fill="#0f3d2f"
+      fillOpacity="0.9"
+    />
+  </svg>
+)
+
+const RightWavyBorder = () => (
+  <svg
+    className="absolute right-0 top-0 h-full w-16 lg:w-24 z-10"
+    viewBox="0 0 100 800"
+    preserveAspectRatio="none"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M100 0 Q80 40 85 80 Q75 120 90 160 Q70 200 80 240 Q65 280 85 320 Q75 360 80 400 Q70 440 85 480 Q65 520 75 560 Q80 600 70 640 Q85 680 75 720 Q65 760 80 800 L100 800 Z"
+      fill="#0f3d2f"
+      fillOpacity="0.9"
+    />
+  </svg>
+)
+
+// Decorative Elements Component
+const DecorativeElements = () => (
+  <>
+    {/* Floating Stars */}
+    <div className="absolute top-20 left-10 text-blue-300 opacity-60 animate-pulse">
+      <Star className="h-6 w-6 fill-current" />
+    </div>
+    <div className="absolute top-32 right-20 text-green-300 opacity-50 animate-pulse delay-1000">
+      <Plus className="h-8 w-8" />
+    </div>
+    <div className="absolute bottom-40 left-16 text-purple-300 opacity-40 animate-pulse delay-2000">
+      <Star className="h-5 w-5 fill-current" />
+    </div>
+    <div className="absolute top-60 right-32 text-blue-400 opacity-50 animate-pulse delay-500">
+      <Plus className="h-6 w-6" />
+    </div>
+    <div className="absolute bottom-60 right-10 text-green-400 opacity-60 animate-pulse delay-1500">
+      <Star className="h-4 w-4 fill-current" />
+    </div>
+    <div className="absolute top-80 left-32 text-purple-400 opacity-40 animate-pulse delay-3000">
+      <Plus className="h-7 w-7" />
+    </div>
+  </>
+)
+
+// Statistics Bar Component
+const StatisticsBar = () => (
+  <div className="bg-white py-8 px-6 lg:px-16">
+    <div className="max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div className="space-y-2">
+          <div className="text-3xl lg:text-4xl font-bold text-gray-900">5,000+</div>
+          <div className="text-gray-600 font-medium">Satisfied Farmers</div>
+        </div>
+        <div className="space-y-2">
+          <div className="text-3xl lg:text-4xl font-bold text-gray-900">10+</div>
+          <div className="text-gray-600 font-medium">Premium Products</div>
+        </div>
+        <div className="space-y-2">
+          <div className="text-3xl lg:text-4xl font-bold text-gray-900">26+</div>
+          <div className="text-gray-600 font-medium">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
+// Image Grid Component
+const ImageGrid = () => {
+  const [imageErrors, setImageErrors] = useState<{[key: string]: boolean}>({})
+
+  const handleImageError = (imageKey: string) => {
+    setImageErrors(prev => ({ ...prev, [imageKey]: true }))
+  }
+
+  const images = [
+    {
+      key: 'image1',
+      src: '/assets/hero-1.webp',
+      alt: 'Professional farmer working in green agricultural field',
+      className: 'rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300'
+    },
+    {
+      key: 'image2', 
+      src: '/assets/hero-2.webp',
+      alt: 'Modern agricultural equipment and tractor in action',
+      className: 'rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300'
+    },
+    {
+      key: 'image3',
+      src: '/assets/hero-3.webp',
+      alt: 'Successful crop harvest and farming operations',
+      className: 'rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 col-span-2'
+    }
   ]
 
   return (
-    <section className="bg-gray-50 py-16 lg:py-24 min-h-[80vh] flex items-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[60vh]">
-          {/* Content */}
-          <div className="space-y-8">
-            {/* Tagline */}
-            <div className="text-green-600 font-medium text-lg">
-              Know-how for your Agribusiness
+    <div className="grid grid-cols-2 gap-4 lg:gap-6 h-full">
+      {images.map((image, index) => (
+        <div key={image.key} className={image.className}>
+          {!imageErrors[image.key] ? (
+            <div className="relative w-full h-full min-h-[200px] lg:min-h-[250px]">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className={`object-cover ${image.key === 'image3' ? 'object-center' : 'object-cover'}`}
+                style={image.key === 'image3' ? { objectPosition: 'center center' } : {}}
+                sizes="(max-width: 768px) 50vw, 25vw"
+                onError={() => handleImageError(image.key)}
+                priority={index === 0}
+              />
             </div>
+          ) : (
+            <div className="w-full h-full min-h-[200px] lg:min-h-[250px] bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+              <div className="text-center text-green-600">
+                <div className="text-4xl mb-2">
+                  {index === 0 ? '🌾' : index === 1 ? '🚜' : '🌱'}
+                </div>
+                <p className="font-medium text-sm">Agricultural Excellence</p>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
 
-            {/* Main Heading */}
-            <div className="space-y-4">
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                Achieve more when farming with us!
+interface HeroSectionProps {
+  eyebrowText?: string
+  mainHeading?: string
+  descriptionText?: string
+  buttonText?: string
+  buttonLink?: string
+  primaryColor?: string
+  accentColor?: string
+}
+
+const HeroSection = ({
+  eyebrowText = "Agricultural Excellence Since 1985",
+  mainHeading = "Empowering Farmers with Premium Solutions",
+  descriptionText = "Fedo Agency provides comprehensive agricultural solutions, from high-quality herbicides and pesticides to expert farming consultation. We're committed to enhancing crop yields and supporting sustainable farming practices across Kenya.",
+  buttonText = "Explore Products",
+  buttonLink = "/products",
+  primaryColor = "#1a4d3e",
+  accentColor = "#f59e0b"
+}: HeroSectionProps) => {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <>
+      <section className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+        {/* Decorative Elements */}
+        <DecorativeElements />
+        
+        {/* Main Container */}
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-16 py-8 sm:py-12 lg:py-16">
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Content Panel */}
+            <div className="space-y-6 lg:space-y-8">
+              {/* Eyebrow Text */}
+              <div className="text-gray-600 font-semibold text-lg lg:text-xl">
+                {eyebrowText}
+              </div>
+
+              {/* Main Heading */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight">
+                {mainHeading}
               </h1>
               
-              <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
-                Here at Fedo Agencies, we offer farmers of Kenya 
-                support to grow their know-how, market, and capital bases.
+              {/* Description */}
+              <p className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg">
+                {descriptionText}
               </p>
-            </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-green-600 hover:bg-orange-500 text-white px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center space-x-2 transition-colors duration-300">
-                <MessageCircle className="h-5 w-5" />
-                <span>Ask us a question</span>
-              </button>
-              <Link href="/products" className="bg-green-600 hover:bg-orange-500 text-white px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center space-x-2 transition-colors duration-300">
-                <span>Discover our products</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-
-            {/* Search Section */}
-            <div className="space-y-4">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="What could you be looking for?"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                />
-                <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                  <Search className="h-5 w-5" />
-                </button>
-              </div>
-              
-              {/* Search Suggestions */}
-              <div className="flex flex-wrap gap-2">
-                {searchSuggestions.map((suggestion, index) => (
-                  <span
-                    key={index}
-                    className={`px-3 py-1 text-sm rounded-full cursor-pointer transition-colors ${
-                      index === 0 
-                        ? 'text-gray-600 font-medium' 
-                        : 'text-green-600 hover:bg-green-50'
-                    }`}
-                  >
-                    {suggestion}
-                    {index < searchSuggestions.length - 1 && index !== 0 && ','}
-                  </span>
-                ))}
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  href={buttonLink}
+                  className={`inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg transform ${
+                    isHovered ? 'bg-blue-700' : 'bg-blue-600'
+                  }`}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <span className="text-lg">{buttonText}</span>
+                </Link>
+                
+                <Link 
+                  href="/contact"
+                  className="inline-flex items-center justify-center space-x-3 px-8 py-4 rounded-lg font-semibold text-gray-700 bg-white border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-md"
+                >
+                  <span className="text-lg">Contact Us</span>
+                </Link>
               </div>
             </div>
-          </div>
 
-          {/* Hero Image */}
-          <div className="relative h-full flex items-center justify-center">
-            {/* Decorative background elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-10 right-10 w-20 h-20 bg-green-100 rounded-full opacity-50"></div>
-              <div className="absolute bottom-10 left-10 w-16 h-16 bg-orange-100 rounded-full opacity-40"></div>
-              <div className="absolute top-1/2 right-0 w-12 h-12 bg-green-200 rounded-full opacity-30"></div>
-            </div>
-            
-            <div className="relative w-full max-w-lg lg:max-w-none z-10">
-              {!imageError ? (
-                <div className="relative aspect-[4/3] w-full h-auto rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-green-50 to-green-100 border border-green-100/50" style={{ minHeight: '300px' }}>
-                  <Image
-                    src="/assets/asset_cowshed.webp"
-                    alt="Modern cowshed with dairy cattle"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700 ease-out"
-                    priority
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
-                    onError={() => setImageError(true)}
-                    onLoad={() => console.log('Hero image loaded successfully')}
-                  />
-                  {/* Subtle overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-white/5 pointer-events-none"></div>
-                  
-                  {/* Corner accent */}
-                  <div className="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full opacity-80"></div>
-                </div>
-              ) : (
-                <div className="aspect-[4/3] w-full h-auto bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center shadow-xl border border-gray-200/50" style={{ minHeight: '300px' }}>
-                  <div className="text-center text-gray-500">
-                    <div className="text-4xl mb-2">🌱</div>
-                    <p className="font-medium">Agricultural Excellence</p>
-                    <p className="text-sm">Image loading...</p>
-                  </div>
-                </div>
-              )}
+            {/* Right Image Grid */}
+            <div className="relative">
+              <ImageGrid />
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Statistics Bar */}
+      <StatisticsBar />
+    </>
   )
 }
 

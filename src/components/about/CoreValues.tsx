@@ -4,7 +4,7 @@ import { coreValues } from '@/data/aboutContent'
 
 export default function CoreValues() {
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -80,9 +80,9 @@ export default function CoreValues() {
               Growing Together
             </h3>
             <p className="text-lg text-gray-700 max-w-4xl mx-auto">
-              These values aren't just words on a wall – they're the principles that drive our daily operations, 
+              These values aren&apos;t just words on a wall – they&apos;re the principles that drive our daily operations, 
               guide our decision-making, and shape our relationships with customers, partners, and communities. 
-              When you choose Fedo Agencies Limited, you're partnering with a company that truly lives its values.
+              When you choose Fedo Agencies Limited, you&apos;re partnering with a company that truly lives its values.
             </p>
           </div>
         </div>

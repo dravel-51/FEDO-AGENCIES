@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['trae-api-sg.mchost.guru'],
+    unoptimized: true,
   },
 }
 

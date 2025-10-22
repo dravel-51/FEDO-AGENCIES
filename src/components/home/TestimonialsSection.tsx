@@ -69,15 +69,16 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-green-800 rounded-2xl p-6 text-white relative overflow-hidden"
+              className="rounded-2xl p-6 relative overflow-hidden"
+              style={{ backgroundColor: '#cfcfcf' }}
             >
               {/* Quote Icon */}
               <div className="mb-4">
-                <Quote className="h-8 w-8 text-green-400" fill="currentColor" />
+                <Quote className="h-8 w-8 text-green-600" fill="currentColor" />
               </div>
 
               {/* Testimonial Text */}
-              <p className="text-white text-base leading-relaxed mb-6">
+              <p className="text-gray-800 text-base leading-relaxed mb-6">
                 {testimonial.testimonial}
               </p>
 
@@ -86,7 +87,7 @@ const TestimonialsSection = () => {
                 <span className="inline-block bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                   {testimonial.result}
                 </span>
-                <span className="inline-block bg-green-700 text-green-200 text-xs font-medium px-3 py-1 rounded-full ml-2">
+                <span className="inline-block bg-gray-600 text-white text-xs font-medium px-3 py-1 rounded-full ml-2">
                   {testimonial.crop}
                 </span>
               </div>
@@ -103,10 +104,10 @@ const TestimonialsSection = () => {
                   />
                 </div>
                 <div>
-                  <div className="font-semibold text-white text-sm">
+                  <div className="font-semibold text-gray-900 text-sm">
                     {testimonial.name}
                   </div>
-                  <div className="text-green-200 text-xs">
+                  <div className="text-gray-600 text-xs">
                     {testimonial.title}
                   </div>
                 </div>

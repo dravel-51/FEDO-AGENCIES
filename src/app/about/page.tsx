@@ -1,22 +1,14 @@
 import type { Metadata } from 'next'
-import CompanyIntro from '@/components/about/CompanyIntro'
 import MissionVision from '@/components/about/MissionVision'
 import CoreValues from '@/components/about/CoreValues'
-import WhyDifferent from '@/components/about/WhyDifferent'
-import Certifications from '@/components/about/Certifications'
-import Regulators from '@/components/about/Regulators'
-import PartnersAssociations from '@/components/about/PartnersAssociations'
-import Sustainability from '@/components/about/Sustainability'
-import TeamSection from '@/components/about/TeamSection'
-import LocationFacilities from '@/components/about/LocationFacilities'
 
 export const metadata: Metadata = {
-  title: 'About Us - Fedo Agencies Limited | Certified Agricultural Solutions Kenya',
-  description: 'Discover Fedo Agencies Limited - your trusted, certified partner in agricultural solutions. Learn about our GROWTH values, certifications, partnerships, sustainability commitments, and 15+ years of serving farmers across Kenya.',
-  keywords: 'about Fedo Agencies, agricultural company Kenya, farming solutions, crop protection experts, agricultural chemicals supplier, KEPHIS certified, ISO certified, sustainable agriculture',
+  title: 'About Us - Fedo Agencies Limited | Mission, Vision & Core Values',
+  description: 'Learn about Fedo Agencies Limited\'s mission to provide quality agricultural products, our vision to be Kenya\'s leading agricultural input provider, and our GROWTH core values that guide everything we do.',
+  keywords: 'about Fedo Agencies, mission vision values, agricultural company Kenya, farming solutions, crop protection experts, agricultural chemicals supplier',
   openGraph: {
-    title: 'About Us - Fedo Agencies Limited | Certified Agricultural Solutions',
-    description: 'Discover our comprehensive agricultural solutions, certifications, partnerships, and commitment to sustainable farming across Kenya.',
+    title: 'About Us - Fedo Agencies Limited | Mission, Vision & Core Values',
+    description: 'Discover our mission, vision, and core values that drive our commitment to agricultural excellence in Kenya.',
     url: '/about',
   },
 }
@@ -24,16 +16,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen">
-      <CompanyIntro />
       <MissionVision />
       <CoreValues />
-      <WhyDifferent />
-      <Certifications />
-      <Regulators />
-      <PartnersAssociations />
-      <Sustainability />
-      <TeamSection />
-      <LocationFacilities />
     </div>
   )
 }

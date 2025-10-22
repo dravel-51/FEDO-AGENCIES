@@ -11,11 +11,11 @@ const Header = () => {
 
   const navigation = [
     { name: 'Home', href: '/', disabled: false },
-    { name: 'About Us', href: '/about', disabled: true },
+    { name: 'About Us', href: '/about', disabled: false },
     {
       name: 'Products',
       href: '/products',
-      disabled: true,
+      disabled: false,
       dropdown: [
         { name: 'Insecticides', href: '/products#insecticides' },
         { name: 'Fungicides', href: '/products#fungicides' },
@@ -24,7 +24,7 @@ const Header = () => {
         { name: 'All Products', href: '/products' },
       ]
     },
-    { name: 'Contact', href: '/contact', disabled: true },
+    { name: 'Contact', href: '/contact', disabled: false },
   ]
 
   return (
@@ -65,9 +65,23 @@ const Header = () => {
                   height={48} 
                   className="w-12 h-12 object-contain"
                 />
-                <div>
-                  <span className="text-[#22c55e] font-bold text-xl">Fedo</span>
-                  <span className="text-gray-700 font-medium text-sm block leading-none">AGENCIES</span>
+                <div className="flex flex-col transition-all duration-300 ease-in-out hover:scale-105 group">
+                  <div className="relative">
+                    <span className="text-transparent bg-gradient-to-r from-[#22c55e] to-[#16a34a] bg-clip-text font-extrabold text-2xl md:text-3xl tracking-tight drop-shadow-sm">
+                      FEDO
+                    </span>
+                    <div className="absolute inset-0 text-[#22c55e] font-extrabold text-2xl md:text-3xl tracking-tight opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-sm">
+                      FEDO
+                    </div>
+                  </div>
+                  <div className="flex flex-col -mt-1">
+                    <span className="text-slate-600 font-semibold text-xs md:text-sm tracking-[0.15em] leading-tight uppercase">
+                      AGENCIES
+                    </span>
+                    <span className="text-slate-500 font-medium text-[10px] md:text-xs tracking-[0.2em] leading-tight uppercase -mt-0.5">
+                      LTD
+                    </span>
+                  </div>
                 </div>
               </div>
             </Link>
@@ -96,16 +110,17 @@ const Header = () => {
                     </Link>
                   )}
 
-                  {/* Dropdown Menu - Only show for enabled items */}
-                  {!item.disabled && item.dropdown && activeDropdown === item.name && (
+                  {/* Dropdown Menu */}
+                  {item.dropdown && activeDropdown === item.name && (
                     <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
                       {item.dropdown.map((dropdownItem) => (
-                        <div
+                        <Link
                           key={dropdownItem.name}
-                          className="block px-4 py-2 text-gray-400 cursor-not-allowed text-sm"
+                          href={dropdownItem.href}
+                          className="block px-4 py-2 text-gray-700 hover:text-[#22c55e] hover:bg-gray-50 text-sm transition-colors duration-200"
                         >
                           {dropdownItem.name}
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -115,9 +130,12 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center space-x-4">
-              <div className="bg-gray-400 text-white px-6 py-2 rounded-md font-medium text-sm cursor-not-allowed">
+              <a 
+                href="tel:020825461"
+                className="bg-[#22c55e] hover:bg-[#16a34a] text-white px-6 py-2 rounded-md font-medium text-sm transition-colors duration-200"
+              >
                 020 825461
-              </div>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -150,24 +168,29 @@ const Header = () => {
                         {item.name}
                       </Link>
                     )}
-                    {item.dropdown && item.disabled && (
+                    {item.dropdown && (
                       <div className="ml-4 space-y-2 mt-2">
                         {item.dropdown.map((dropdownItem) => (
-                          <div
+                          <Link
                             key={dropdownItem.name}
-                            className="block text-gray-400 py-1 text-sm cursor-not-allowed"
+                            href={dropdownItem.href}
+                            className="block text-gray-600 hover:text-[#22c55e] py-1 text-sm transition-colors duration-200"
+                            onClick={() => setIsMenuOpen(false)}
                           >
                             {dropdownItem.name}
-                          </div>
+                          </Link>
                         ))}
                       </div>
                     )}
                   </div>
                 ))}
                 <div className="pt-4 border-t border-gray-200">
-                  <div className="bg-gray-400 text-white px-6 py-3 rounded-md font-medium w-full text-center block cursor-not-allowed">
+                  <a 
+                    href="tel:020825461"
+                    className="bg-[#22c55e] hover:bg-[#16a34a] text-white px-6 py-3 rounded-md font-medium w-full text-center block transition-colors duration-200"
+                  >
                     Call 020 825461
-                  </div>
+                  </a>
                 </div>
               </nav>
             </div>

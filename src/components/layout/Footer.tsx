@@ -40,20 +40,19 @@ const Footer = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Company Info */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-4">
                 <Image 
                   src="/logo.webp" 
                   alt="Fedo Agencies Logo" 
-                  width={32} 
-                  height={32} 
-                  className="h-8 w-8 object-contain" 
+                  width={56} 
+                  height={56} 
+                  className="h-12 w-12 sm:h-14 sm:w-14 object-contain flex-shrink-0" 
                 />
-                <span className="text-2xl font-bold">FEDO AGENCIES</span>
+                <span className="text-xl sm:text-2xl font-bold">FEDO AGENCIES LTD</span>
               </div>
               
               <p className="text-gray-300 text-sm leading-relaxed max-w-md">
-                Providing innovative agricultural solutions and quality products to enhance 
-                farming productivity and sustainable agriculture practices.
+                Delivering cutting-edge agrochemical products and innovative farming solutions to Kenyan farmers, enhancing crop productivity, soil health, and sustainable agricultural development
               </p>
 
               {/* Social Media */}

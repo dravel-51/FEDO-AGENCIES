@@ -52,7 +52,7 @@ export default function NewsletterSignup() {
               Welcome to Our Community!
             </h2>
             <p className="text-xl text-green-100 mb-8">
-              Thank you for subscribing to our newsletter. You'll receive your first update within the next few days.
+              Thank you for subscribing to our newsletter. You&apos;ll receive your first update within the next few days.
             </p>
             <button
               onClick={() => setIsSubscribed(false)}
