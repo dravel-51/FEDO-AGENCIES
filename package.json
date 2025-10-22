@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
+    "start:cpanel": "NODE_ENV=production HOSTNAME=0.0.0.0 node server.js",
+    "build:production": "NODE_ENV=production npm run build",
+    "deploy:prepare": "npm ci --production && npm run build:production",
     "lint": "next lint",
     "check": "tsc --noEmit"
   },

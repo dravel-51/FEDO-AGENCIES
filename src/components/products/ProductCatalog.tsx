@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Star, ShoppingCart, Eye, Download } from 'lucide-react'
+import Image from 'next/image'
 
 export default function ProductCatalog() {
   const [activeTab, setActiveTab] = useState('insecticides')
@@ -149,9 +150,11 @@ export default function ProductCatalog() {
             <div key={product.id} className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow">
               {/* Product Image */}
               <div className="relative h-48 bg-gray-100">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
+                  width={400}
+                  height={192}
                   className="w-full h-full object-cover"
                 />
                 {!product.inStock && (

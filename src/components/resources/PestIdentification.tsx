@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Search, Filter, Eye, AlertTriangle, Shield, Zap } from 'lucide-react'
+import Image from 'next/image'
 
 export default function PestIdentification() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -177,9 +178,11 @@ export default function PestIdentification() {
             const SeverityIcon = getSeverityIcon(pest.severity)
             return (
               <div key={pest.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-                <img
+                <Image
                   src={pest.image}
                   alt={pest.name}
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">

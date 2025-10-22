@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Calendar, Target, Shield, Zap } from 'lucide-react'
+import Image from 'next/image'
 
 export default function CropSolutions() {
   const [selectedCrop, setSelectedCrop] = useState('tomatoes')
@@ -159,9 +160,11 @@ export default function CropSolutions() {
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           {/* Header with Image */}
           <div className="relative h-64 bg-gradient-to-r from-green-600 to-emerald-600">
-            <img
+            <Image
               src={currentCrop.image}
               alt={currentCrop.name}
+              width={800}
+              height={256}
               className="w-full h-full object-cover opacity-30"
             />
             <div className="absolute inset-0 flex items-center justify-center">

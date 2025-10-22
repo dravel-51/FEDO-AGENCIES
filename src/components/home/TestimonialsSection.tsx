@@ -28,7 +28,7 @@ const TestimonialsSection = () => {
       id: 3,
       name: 'Peter Mwangi',
       title: 'Maize Farmer, Nakuru County',
-      testimonial: 'Fedo\'s herbicides and pest control solutions helped me manage my 50-acre maize farm efficiently. Their training programs taught me sustainable farming practices that reduced costs by 30% while increasing productivity.',
+      testimonial: 'Fedo&apos;s herbicides and pest control solutions helped me manage my 50-acre maize farm efficiently. Their training programs taught me sustainable farming practices that reduced costs by 30% while increasing productivity.',
       image: 'https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=kenyan%20male%20farmer%20maize%20field%20agricultural%20setting%20professional%20outdoor%20confident&image_size=square',
       crop: 'Maize',
       result: '30% cost reduction'

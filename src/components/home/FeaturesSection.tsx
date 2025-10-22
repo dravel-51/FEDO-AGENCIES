@@ -39,7 +39,7 @@ const FeaturesSection = () => {
             </div>
             
             <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto drop-shadow-md">
-              <span className="text-orange-400 font-medium">Fedo Agencies</span> is Kenya's trusted partner in agricultural excellence, specializing in premium crop protection solutions, livestock health products, and comprehensive farming support services. We empower farmers across Kenya with innovative, sustainable agricultural solutions that enhance productivity, protect investments, and drive farming success.
+              <span className="text-orange-400 font-medium">Fedo Agencies</span> is Kenya&apos;s trusted partner in agricultural excellence, specializing in premium crop protection solutions, livestock health products, and comprehensive farming support services. We empower farmers across Kenya with innovative, sustainable agricultural solutions that enhance productivity, protect investments, and drive farming success.
             </p>
           </div>
         </div>

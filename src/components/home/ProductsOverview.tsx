@@ -1,149 +1,187 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowRight, Check } from 'lucide-react'
+'use client'
 
-const ProductsOverview = () => {
-  const products = [
-    {
-      id: 1,
-      title: 'AlphaGo 200SC',
-      image: '/products/alphago.png',
-      href: '/products/insecticides',
-      specifications: [
-        { label: 'Type', value: 'Broad-spectrum insecticide with enhanced contact and stomach toxicity activity' },
-        { label: 'Targets', value: 'Aphids, Whiteflies, Bean pod borers, Bollworms, Cabbage looper, Caterpillar, Diamondback moth, Fall armyworm, False codling moth, Red banded caterpillar, Red Spidermites, Sawflies, Thrips, Tuta Absoluta' },
-        { label: 'Best for', value: 'Edible crops, Ornamentals' },
-        { label: 'Packs', value: '1L, 100 ml, 25 ml, 250 ml, 50 ml' },
-        { label: 'Contains', value: 'Imidacloprid 200 g/L' },
-        { label: 'Rate', value: '100-125ml per Ha in 1000 L of water (2.5-3ml per 20L)' }
-      ]
-    },
-    {
-      id: 2,
-      title: 'Diazole',
-      image: '/products/diazole.png',
-      href: '/products/herbicides',
-      specifications: [
-        { label: 'Type', value: 'Herbicide - Selective' },
-        { label: 'Targets', value: 'Annual Broadleaf, Grass Weeds' },
-        { label: 'Best for', value: 'Maize, Sweet corn and baby corn - as Pre-emergence and early post-emergence, Sugarcane - as Early post emergence' },
-        { label: 'Packs', value: '1L, 20 L, 5 L' },
-        { label: 'Contains', value: 'Acetochlor 340 g/l, Atrazine 200 g/l, Mesotrione 40 g/l' },
-        { label: 'Rate', value: '2.5L per Hectare (250ml per 20L of water)' }
-      ]
-    },
-    {
-      id: 3,
-      title: 'Ratfire Powder',
-      image: '/products/ratfire powder.png',
-      href: '/products/insecticides',
-      specifications: [
-        { label: 'Type', value: 'Insecticide' },
-        { label: 'Targets', value: 'Leafminers, Red Spidermites, Root-knot nematode, Thrips' },
-        { label: 'Best for', value: 'Edible crops, Ornamentals' },
-        { label: 'Packs', value: '10 ml, 100 ml, 25 ml, 250 ml, 50 ml' },
-        { label: 'Contains', value: 'Abamectin 50 g/L' },
-        { label: 'Rate', value: '3 ml per 20 liter of water' }
-      ]
-    },
-    {
-      id: 4,
-      title: 'Faida Milking Jelly',
-      image: '/products/faida milking jelly.png',
-      href: '/products/insecticides',
-      specifications: [
-        { label: 'Type', value: 'Insecticide' },
-        { label: 'Targets', value: 'Bean pod borers, Bollworms, Caterpillar, Diamondback moth, Fall armyworm, Red Spidermites, Stalk borers, Thrips, Tuta Absoluta' },
-        { label: 'Best for', value: 'Edible crops, Ornamentals' },
-        { label: 'Packs', value: '10 ml, 100 ml, 25 ml, 250 ml, 50 ml' },
-        { label: 'Contains', value: 'Emamectin benzoate 19 g/L' },
-        { label: 'Rate', value: '15-20ml per Ha in 1000 L of water (0.3-0.4ml per 20L)' }
-      ]
-    }
-  ]
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight, Check } from 'lucide-react'
+import { useState } from 'react'
+
+// Product data with image references
+const productImages = [
+  {
+    key: 'alphago',
+    src: '/assets/alphago.webp',
+    alt: 'AlphaGo 200SC - Broad-spectrum insecticide for effective pest control',
+    className: 'object-contain'
+  },
+  {
+    key: 'diazole',
+    src: '/assets/diazole.webp',
+    alt: 'Diazole - Selective herbicide for targeted weed control',
+    className: 'object-contain'
+  },
+  {
+    key: 'alphashield',
+    src: '/assets/alphashield.webp',
+    alt: 'AlphaShield - Insecticidal spray for comprehensive pest management',
+    className: 'object-contain'
+  },
+  {
+    key: 'faida',
+    src: '/assets/faida milking jelly.webp',
+    alt: 'Faida Milking Jelly - Premium insecticide solution for livestock protection',
+    className: 'object-contain'
+  }
+]
+
+// Product data
+const products = [
+  {
+    id: 1,
+    name: 'AlphaGo 200SC',
+    price: 'KSh 1,200',
+    imageKey: 'alphago',
+    features: [
+      'Broad-spectrum insecticide',
+      'Controls Aphids, Whiteflies, Borer',
+      'Bollworms',
+      'Best for Edible crops',
+      'Contains Imidacloprid'
+    ]
+  },
+  {
+    id: 2,
+    name: 'Diazole',
+    price: 'KSh 950',
+    imageKey: 'diazole',
+    features: [
+      'Selective herbicide',
+      'Targets Annual Broadleaf,',
+      'Grass Weeds',
+      'Best for Maize, Sweet Corn',
+      'Contains Acetochlor, Atrazine'
+    ]
+  },
+  {
+    id: 3,
+    name: 'AlphaShield',
+    price: 'KSh 800',
+    imageKey: 'alphashield',
+    features: [
+      'Insecticidal spray',
+      'Targets Leafminers,',
+      'Aphids, Termites,',
+      'Root-knot nematode',
+      'Best for Edible crops'
+    ]
+  },
+  {
+    id: 4,
+    name: 'Faida Milking Jelly',
+    price: 'KSh 1,100',
+    imageKey: 'faida',
+    features: [
+      'Insecticide',
+      'Targets Boll and pest, Bollworms',
+      'Caterpillar',
+      'Best for Edible crops',
+      'Contains Inedible crops'
+    ]
+  }
+]
+
+// Product Card Component
+const ProductCard = ({ product }: { product: typeof products[0] }) => {
+  const [imageError, setImageError] = useState(false)
+  
+  const handleImageError = () => {
+    setImageError(true)
+  }
+
+  // Find the corresponding image data
+  const imageData = productImages.find(img => img.key === product.imageKey)
 
   return (
-    <section className="py-16 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div className="flex h-full">
+        {/* Product Image - Left Side (50% width) */}
+        <div className="w-1/2 relative bg-gray-50 flex items-center justify-center p-4">
+          {!imageError && imageData ? (
+            <div className="relative w-full h-48 lg:h-56">
+              <Image
+                src={imageData.src}
+                alt={imageData.alt}
+                width={400}
+                height={300}
+                className={`w-full h-full ${imageData.className}`}
+                onError={handleImageError}
+              />
+            </div>
+          ) : (
+            <div className="w-full h-48 lg:h-56 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center rounded-md">
+              <div className="text-center text-green-600">
+                <div className="text-4xl mb-2">🧪</div>
+                <p className="font-medium text-sm">Product</p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Product Details - Right Side (50% width) */}
+        <div className="w-1/2 p-4 lg:p-6 flex flex-col justify-between">
+          {/* Product Name */}
+          <div>
+            <h3 className="font-bold text-lg lg:text-xl text-gray-900 mb-3">
+              {product.name}
+            </h3>
+
+            {/* Features with Green Checkmarks */}
+            <ul className="space-y-1 mb-4">
+              {product.features.map((feature, index) => (
+                <li key={index} className="flex items-start text-sm text-gray-600">
+                  <Check className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Price and Button */}
+          <div className="space-y-3">
+            <div className="text-xl lg:text-2xl font-bold text-gray-900">
+              {product.price}
+            </div>
+            
+            <Link
+              href={`/products/${product.id}`}
+              className="inline-flex items-center text-green-600 hover:text-green-700 font-medium text-sm transition-colors duration-200"
+            >
+              <span>View Details</span>
+              <ArrowRight className="h-4 w-4 ml-1" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Main ProductsOverview Component
+const ProductsOverview = () => {
+  return (
+    <section className="bg-gray-200 py-12 lg:py-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-black mb-2">
-            Our Top products
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Our Featured Products
           </h2>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {products.map((product) => (
-            <div 
-              key={product.id}
-              className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
-            >
-              <div className="flex">
-                {/* Product Image Section */}
-                <div className="w-1/3 bg-gray-50 flex items-center justify-center p-6">
-                  <div className="relative w-full h-48">
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                </div>
-
-                {/* Product Details Section */}
-                <div className="w-2/3 p-6">
-                  <h3 className="text-xl font-bold text-black mb-4">
-                    {product.title}
-                  </h3>
-
-                  {/* Specifications List */}
-                  <div className="space-y-3">
-                    {product.specifications.map((spec, index) => (
-                      <div key={index} className="flex items-start space-x-2">
-                        <Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                        <div className="text-sm">
-                          <span className="font-medium text-gray-700">{spec.label}:</span>
-                          <span className="text-gray-600 ml-1">{spec.value}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Learn More Link */}
-                  <div className="mt-6">
-                    <Link 
-                      href={product.href}
-                      className="inline-flex items-center space-x-2 text-green-600 hover:text-green-700 font-medium transition-colors duration-200"
-                    >
-                      <span>Learn More</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-12 text-center bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-            Need Help Choosing the Right Products?
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Our agricultural experts are here to help you select the best products for your specific crops and farming conditions.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products" className="inline-flex items-center justify-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200">
-              View All Products
-            </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center px-6 py-3 border border-green-600 text-green-600 hover:bg-green-50 font-medium rounded-lg transition-colors duration-200">
-              Get Expert Advice
-            </Link>
-          </div>
         </div>
       </div>
     </section>

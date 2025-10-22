@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Calendar, User, Clock, Eye, ArrowRight, Filter } from 'lucide-react'
+import Image from 'next/image'
 
 export default function BlogGrid() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -196,9 +197,11 @@ export default function BlogGrid() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sortedPosts.map((post) => (
             <article key={post.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-              <img
+              <Image
                 src={post.image}
                 alt={post.title}
+                width={400}
+                height={192}
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">

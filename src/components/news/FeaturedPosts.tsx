@@ -1,4 +1,5 @@
 import { Calendar, User, ArrowRight, Clock, Eye } from 'lucide-react'
+import Image from 'next/image'
 
 export default function FeaturedPosts() {
   const featuredPosts = [
@@ -59,9 +60,11 @@ export default function FeaturedPosts() {
           <div className="lg:col-span-1">
             <article className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="relative">
-                <img
+                <Image
                   src={mainFeatured.image}
                   alt={mainFeatured.title}
+                  width={600}
+                  height={256}
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute top-4 left-4">
@@ -120,9 +123,11 @@ export default function FeaturedPosts() {
               <article key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="flex">
                   <div className="w-1/3">
-                    <img
+                    <Image
                       src={post.image}
                       alt={post.title}
+                      width={200}
+                      height={150}
                       className="w-full h-full object-cover"
                     />
                   </div>

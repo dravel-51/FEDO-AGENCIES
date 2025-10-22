@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { BookOpen, Clock, User, ArrowRight, Star, Download } from 'lucide-react'
+import Image from 'next/image'
 
 export default function EducationalGuides() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -135,9 +136,11 @@ export default function EducationalGuides() {
                 </button>
               </div>
               <div className="lg:text-right">
-                <img
+                <Image
                   src={featuredGuide.image}
                   alt={featuredGuide.title}
+                  width={400}
+                  height={300}
                   className="rounded-xl shadow-2xl w-full max-w-md ml-auto"
                 />
               </div>
@@ -166,9 +169,11 @@ export default function EducationalGuides() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredGuides.filter(guide => !guide.featured).map((guide) => (
             <div key={guide.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <img
+              <Image
                 src={guide.image}
                 alt={guide.title}
+                width={400}
+                height={192}
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">

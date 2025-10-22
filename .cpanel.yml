@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/angffpot/public_html/fedoagencies
+    - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp -R .next $DEPLOYPATH
+    - /bin/cp package*.json $DEPLOYPATH
+    - cd $DEPLOYPATH && npm ci --production
+    - cd $DEPLOYPATH && npm run build:production
